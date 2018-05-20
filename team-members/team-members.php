@@ -3,9 +3,9 @@
 Plugin Name: Wordpress Team Member
 Plugin URI: #
 Description: Wordpress Team Member Plugins
-Author: baseonesolutions
+Author: Mobashir
 Version: 6
-Author URI: http://baseonesolutions.com/
+Author URI: #
 Text Domain: wordpress-team-member
 */
 ?>
