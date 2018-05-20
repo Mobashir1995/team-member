@@ -1,0 +1,81 @@
+.err_msg{
+	color: red;
+}
+.success_mssg{ color: green !important; }
+.tm_mbr_left table td,
+.tm_mbr_form_field{
+	display: block;
+	width: 100%;
+}
+.tm_mbr_left{
+	width: 30%;
+	float: left;
+}
+.tm_mbr_left table,
+.tm_mbr_right table  { width: 100%; }
+.tm_mbr_right{
+	width: 68%;
+	float: right;
+}
+.tm_mbr_right{
+	margin-left: 10px;
+}
+.clear{
+	clear: both;
+	overflow: hidden;
+}
+.tm_mbr_right table tr{ overflow: hidden; }
+.tm_mbr_right table thead tr th,
+.tm_mbr_right table tbody tr td{
+	width: 48%;
+	font-size: 20px;
+	color: #0073aa;
+	float: left;
+	background: #fff;
+	padding: 15px 0px;
+}
+.tm_mbr_right table thead tr th:hover{
+	color: #00a0d2;
+	cursor: pointer;
+}
+.tm_mbr_right table thead{ background: #fff }
+.tm_mbr_right table tbody{
+	width: 100%;
+	background: #e5e5e5;
+}
+#member_table.tm_mbr_right table thead tr th,
+#member_table.tm_mbr_right table tbody tr td{ width: 25%; }
+.tm_mbr_right table tbody tr td{
+	color: initial;
+	font-size: 18px;
+	background: #f1f1f1;
+	width: 50%;
+	padding: 5px 0;
+	text-align: center;
+	background: #e5e5e5;
+	color: #555 !important;
+}
+.tm_mbr_right table tbody tr:nth-child(2n),
+.tm_mbr_right table tbody tr:nth-child(2n) td{ background: #fff; }
+.tm_mbr_right table tbody tr td a{ text-decoration: none; }
+.inline_options{
+	margin: 5px;
+	font-size: 14px;
+}
+.inline_options a{
+	visibility: hidden;
+	border-right: 1px solid #555;
+	padding-right: 5px;
+}
+.tm_mbr_right table tbody tr td:hover .inline_options a{ visibility: visible; }
+.clear{ clear: both; overflow: hidden; }
+.no_dept{ padding: 20px 0 !important; }
+.update{ display: block; width: 100%; overflow: hidden; margin: 10px 0; margin-top: 0; }
+.update_inn{ width: 60%; margin: 10px auto; }
+.update_inn .inline-edit-col{ overflow: hidden; }
+.update_inn_content{ width: 47%; float: left; }
+.update_inn_content input{ width: 100% !important; }
+.update_inn_content:nth-child(2n-1){ padding-right: 10px; }
+.update_inn_content:nth-child(2n){ padding-right: 0; padding-left: 10px; }
+.update_info{ clear: both; }
+#submit_update_dept{ margin-right: 7px; }
