@@ -34,11 +34,9 @@ Class tm_mbr_menus{
 				<h2><?php echo $main_title; ?></h2>
 				<form action='' method="post">
 			      <?php if( strtoupper( $main_title ) == strtoupper( 'DEPARTMENT' ) ){ ?>
-			        <h2>CREATE NEW <?php echo $main_title; ?></h2>
 			        <?php require_once( plugin_dir_path(__FILE__).'../department.php'); ?>	
 			        
 			      <?php }elseif( strtoupper( $main_title ) == strtoupper( 'MEMBERS' ) ){ ?>
-			  		  	<h2>CREATE NEW <?php echo $main_title; ?></h2>
 			        	<?php require_once( plugin_dir_path(__FILE__).'../members.php'); } ?>
 		        </form>
 			</div>

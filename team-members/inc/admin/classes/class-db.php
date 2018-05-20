@@ -1,7 +1,7 @@
 <?php
 /*class for Database
 *
-*Acceptable Arguments are Table-Name='String', Query_data='Indexed_Array()', Data='Multidimensional_Associative_array()', Data-Format=Indexed_array();
+*Acceptable Arguments are Table-Name='String', Query_data='Indexed_Array() For Select Values/Associative_Arrar For Update Values', Data_array='Multidimensional_Associative_array() For Where Clause OR Insert', Data-Format=Indexed_array();
 *
 */
 class tm_mbr_db{
@@ -14,6 +14,7 @@ class tm_mbr_db{
 		$this->data_format = $format_data;
 	}
 
+	//Insert Single Row
 	function insert_row(){
 		global $wpdb;
 		$wpdb->show_errors( true );
@@ -21,6 +22,7 @@ class tm_mbr_db{
 		return $insert_info;
 	}
 
+	//delete Row
 	function delete_rows(){
 		global $wpdb;
 		$wpdb->show_errors( true );
@@ -29,6 +31,7 @@ class tm_mbr_db{
 		return $delete_row;
 	}
 	
+	//get all Rows
 	function get_all_rows(){
 		global $wpdb;
 		$wpdb->show_errors( true );
@@ -54,12 +57,23 @@ class tm_mbr_db{
 						$where_data .= "$arg = "."'".$data."' AND ";
 					}
 				}
+
 			}
+			
 			$get_all_info = $wpdb->get_results("SELECT $select_data FROM $this->table_name WHERE $where_data ORDER BY ID DESC" , ARRAY_A);
 		}else{
 			$get_all_info = $wpdb->get_results("SELECT $select_data FROM $this->table_name ORDER BY ID DESC" , ARRAY_A);
 		}
 		return $get_all_info;
+	}
+
+	//update Row----Expect One Parameter For Where Format
+	function update_row($where_format){
+		global $wpdb;
+		$wpdb->show_errors( true );
+
+		$update = $wpdb->update($this->table_name, $this->query_data, $this->data_array, $this->data_format, $where_format);
+		return $update;
 	}
 
 }
