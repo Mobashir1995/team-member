@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_status() != PHP_SESSION_ACTIVE) {
+  session_start();
+}
 echo "<div class='tm_mbr_front'>";
 if( $_SESSION['ID'] ){
 	global $wpdb;
@@ -32,7 +34,7 @@ if( $_SESSION['ID'] ){
 		<div class="profile_pic">
 			<form id='form_img_upload' method="post" enctype="multipart/form-data">
 				<img id='profile_img' src="<?php echo $upload_dir.$_SESSION['PROFILE_PICTURE']; ?>" width="" height="" alt="">
-				<p class="image_upload_text"></p>
+				<div class="image_upload_text"></div>
 				<input type="file" name="fileToUpload" id="fileToUpload">
 				<input type="submit" id='img_upload' value="Change Profile Picture" name="imgUpload">
 			</form>
@@ -77,8 +79,8 @@ if( $_SESSION['ID'] ){
 				for( $i=0; $i<count($dept_user); $i++){
 					//$new_arr = $dept_user[$i];
 					echo "<tr>
-							<td>".$dept_user[$i][NAME]."</td>
-							<td>".$dept_user[$i][EMAIL]."</td>
+							<td>".$dept_user[$i]['NAME']."</td>
+							<td>".$dept_user[$i]['EMAIL']."</td>
 						  </tr>";
 				}
 				echo "</table>";

@@ -118,7 +118,7 @@ function tm_mbr_menu_page_create(){
 
 //Callback function for Add Menu Page
 function tm_mbr_create_menupage(){
-	tm_mbr_menus::tm_mbr_page_main_content('MEMBERS', 'tm_mbr_create_employee');
+	(new tm_mbr_menus())->tm_mbr_page_main_content('MEMBERS', 'tm_mbr_create_employee');
 }
 add_action( 'admin_menu', 'tm_mbr_menu_page_create' );
 
@@ -197,7 +197,7 @@ function tm_mbr_new_dept_process_request(){
 	$dept_table = $wpdb->prefix.'tm_mbr_department';
 	$dept_in_db = $wpdb->get_var( "SELECT NAME FROM $dept_table WHERE NAME = '$dept_name' " );
 
-	if( !class_exists(tm_mbr_db) ){
+	if( !class_exists('tm_mbr_db') ){
 		require_once( plugin_dir_path( __FILE__ ).'/inc/admin/classes/class-db.php' );
 	}
 	if( strtolower( $dept_in_db ) == strtolower($dept_name) ){
@@ -247,7 +247,7 @@ function tm_mbr_new_record_add_row(){
 	$last_insert_id = $_POST['last_id'];
 	global $wpdb;
 
-	if( !class_exists(tm_mbr_db) ){
+	if( !class_exists('tm_mbr_db') ){
 		require_once( plugin_dir_path( __FILE__ ).'/inc/admin/classes/class-db.php' );
 	}
 
@@ -284,7 +284,7 @@ function tm_mbr_ajax_delete_data(){
 	global $wpdb;
 
 	$dept_table = $wpdb->prefix.$_POST['table'];
-	if( !class_exists(tm_mbr_db) ){
+	if( !class_exists('tm_mbr_db') ){
 		require_once( plugin_dir_path( __FILE__ ).'/inc/admin/classes/class-db.php' );
 	}
 
@@ -318,7 +318,7 @@ function tm_mbr_update_dept(){
 
 	$dept_in_db = $wpdb->get_var( "SELECT NAME FROM $dept_table WHERE NAME = '$dept_name' " );
 
-	if( !class_exists(tm_mbr_db) ){
+	if( !class_exists('tm_mbr_db') ){
 		require_once( plugin_dir_path( __FILE__ ).'/inc/admin/classes/class-db.php' );
 	}
 	if( strtolower( $dept_in_db ) == strtolower($dept_name) ){
@@ -521,7 +521,7 @@ function tm_mbr_ajax_new_user(){
 	$user_mail = $user_data['mail'];
 	global $wpdb;
 	$user_table = $wpdb->prefix.'tm_mbr_team_members';
-	if( !class_exists(tm_mbr_db) ){
+	if( !class_exists('tm_mbr_db') ){
 		require_once( plugin_dir_path( __FILE__ ).'/inc/admin/classes/class-db.php' );
 	}
 
@@ -573,7 +573,7 @@ function tm_mbr_ajax_suggest(){
 	$user_mail = $_POST['name'];
 	$table = $wpdb->prefix.$_POST['table'];
 
-	if( !class_exists(tm_mbr_db) ){
+	if( !class_exists('tm_mbr_db') ){
 		require_once( plugin_dir_path( __FILE__ ).'/inc/admin/classes/class-db.php' );
 	}
 
@@ -599,7 +599,7 @@ function tm_mbr_log_in(){
 
 	if($select_users){
 		$_SESSION['ID'] = $select_users[0]['ID'];
-		echo "<span class='success_flag' style='display: none'>1</span><span class='home_url' style='display: none'>".home_url('/')."member-home</span><span class='user_id' style='display: none'>".$select_users[0]['ID']."</span>";
+		echo "<span class='success_flag' style='display: none'>1</span><span class='home_url' style='display: none'>".get_permalink(get_page_by_path('member-home')->ID)."</span><span class='user_id' style='display: none'>".$select_users[0]['ID']."</span>";
 	}else{
 		echo "Sorry! User Name And Password Not Match.";
 	}
@@ -657,7 +657,7 @@ function tm_mbr_image_upload(){
 	if($check !== false) {
 	    $uploadOk = 1;
 	} else {
-	    echo "<span class='image_upload_result' style='display: none'>Please Upload an image File.</span>";
+	    echo "<p class='image_upload_result' style='display: none'>Please Upload an image File.</p>";
 	    $uploadOk = 0;
 	}
 
@@ -673,27 +673,27 @@ function tm_mbr_image_upload(){
 
 
 	if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ){
-	    echo "<span class='image_upload_result' style='display: none'>Sorry, only JPG, JPEG, PNG & GIF files are allowed.</span>";
+	    echo "<p class='image_upload_result' style='display: none'>Sorry, only JPG, JPEG, PNG & GIF files are allowed.</p>";
 	    $uploadOk = 0;
 	}
 
 	if ($_FILES["fileToUpload"]["size"] > 5000000000) {
-	    echo "<span class='image_upload_result' style='display: none'>Sorry, your file is too large.</span>";
+	    echo "<p class='image_upload_result' style='display: none'>Sorry, your file is too large.</p>";
 	    $uploadOk = 0;
 	}
 	if ($uploadOk == 0) {
-	    echo "<span class='image_upload_result' style='display: none'>Sorry, your file was not uploaded.</span>";
+	    echo "<p class='image_upload_result' style='display: none'>Sorry, your file was not uploaded.</p>";
 	} else {
 	    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
 	        $target_file = basename($target_file);
 	        $image_insert = $wpdb->query("UPDATE $user_table SET PROFILE_PICTURE='".$target_file."' WHERE ID='".$_SESSION['ID']."' ");
 	        if($image_insert){
-	        	echo "<span class='result_flag'>1</span><span class='image_upload_result' style='display: none'>Your Profile Picture has been uploaded.</span>";
+	        	echo "<span class='result_flag'>1</span><p class='image_upload_result' style='display: none'>Your Profile Picture has been uploaded.</p>";
 	        }else{
 	        	echo $wpdb->show_errors( true );
 	        }
 	    } else {
-	        echo "<span class='image_upload_result' style='display: none'>Sorry, there was an error uploading your file.</span>";
+	        echo "<p class='image_upload_result' style='display: none'>Sorry, there was an error uploading your file.</p>";
 	    }
 	}
 	wp_die();

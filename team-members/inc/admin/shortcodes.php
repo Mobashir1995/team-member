@@ -5,13 +5,13 @@ if( !class_exists('tm_mbr_db') ){
 global $wpdb;
 
 function tm_mbr_team_member($atts){
-	$shortcode = "<form id='login_form' action='".home_url('/')."member-home' method='post' >";
+	$shortcode = "<form id='login_form' action='".get_permalink(get_page_by_path('member-home')->ID)."' method='post' >";
 	$shortcode .= "<h2>Log In</h2><p class='form_result err_msg'></p>";
 	$shortcode .= "<label for='mail'>EMAIL:</label> <input type='text' name='mail' id='mail'> <span class='err_msg'></span> <br>";
 	$shortcode .= "<label for='pwd'>Password:</label> <input type='password' name='pwd' id='pwd'> <span class='err_msg'></span> <br>";
 	$shortcode .= "<input type='hidden' id='u_id' name='id' >";
 	$shortcode .= "<input type='submit' value='Log In' id='login' name='tm_mbr_login'> ";
-	$shortcode .= "<a href='".home_url('/')."member-registration' class='tm_mbr_register'>click here to register</a>";
+	$shortcode .= "<a href='".get_permalink(get_page_by_path('member-registration')->ID)."' class='tm_mbr_register'>click here to register</a>";
 	$shortcode .= "</form>";
 	return $shortcode;
 }

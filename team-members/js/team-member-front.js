@@ -249,9 +249,9 @@ var that = this;
 				var result_text = jQuery('.image_upload_result').text();
 				var result_flag = jQuery('.result_flag').text();
 				if(result_flag == 1){
-					jQuery('.image_upload_text').html("<span class='success_mssg'> "+result_text+"</span>");
+					jQuery('.image_upload_text').html("<div class='success_mssg'> "+result_text+"</div>");
 				}else{
-					jQuery('.image_upload_text').html("<span class='err_msg'> "+result_text+"</span>");
+					jQuery('.image_upload_text').html("<div class='err_msg'> "+result_text+"</div>");
 				}
 			},
 		});

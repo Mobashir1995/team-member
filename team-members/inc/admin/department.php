@@ -1,5 +1,5 @@
 <?php
-if( !class_exists(tm_mbr_db) ){
+if( !class_exists('tm_mbr_db') ){
 	require_once( plugin_dir_path( __FILE__ ).'classes/class-db.php');
 }
 global $wpdb;
@@ -18,7 +18,7 @@ if( isset($_POST['total_page_item_submit']) && $_POST['tm_mbr_page_item']>0 ){
 
 $tm_mbr_page_item = get_option('tm_mbr_dept_page_item') ? get_option('tm_mbr_dept_page_item') : 10;
 
-$page_num = $_GET['page_num'] ? $_GET['page_num'] : 1;
+$page_num = isset($_GET['page_num']) && !empty($_GET['page_num']) ? $_GET['page_num'] : 1;
 $limit = $tm_mbr_page_item;
 $offset = ($page_num-1)*$limit;
 
