@@ -5,7 +5,7 @@ Plugin URI: #
 Description: Wordpress Team Member Plugins
 Author: Mobashir
 Version: 6
-Author URI: #
+Author URI: https://plugin-devs.com
 Text Domain: wordpress-team-member
 */
 ?>
